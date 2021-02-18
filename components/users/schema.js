@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const UserSchema = mongoose.Schema({
    email: {
@@ -11,6 +13,18 @@ const UserSchema = mongoose.Schema({
       requried: true,
       maxlength: [500, 'max 500 chars allowed for password'],
    },
+});
+
+UserSchema.pre('save', function (next) {
+   try {
+      const user = this;
+      const salt = bcrypt.genSaltSync(saltRounds);
+      const hash = bcrypt.hashSync(user.password, salt);
+      user.password = hash;
+      next();
+   } catch (err) {
+      next(err);
+   }
 });
 
 module.exports = mongoose.model('users', UserSchema);
