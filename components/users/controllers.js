@@ -7,7 +7,7 @@ class Controllers {
       try {
          const dto = req.body;
 
-         //*  @VALIDATION
+         //* @VALIDATION */
          const validEmail = validator.isEmail(dto.email);
          if (!validEmail) {
             STATUS = 400;
