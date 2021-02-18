@@ -1,6 +1,13 @@
-const express = require('express');
-const app = express(0);
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const path = require('path');
+const app = require('./app');
+dotenv.config({ path: path.join(__dirname, 'config', '.env') });
 
-app.listen(5000, () => {
-   console.log('server is running on port', 3000);
+const { PORT } = process.env;
+
+mongoose.connect();
+
+app.listen(PORT, () => {
+   console.log('server is running on port', PORT);
 });

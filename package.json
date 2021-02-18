@@ -11,5 +11,9 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.20.0"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.11.17"
   }
 }
