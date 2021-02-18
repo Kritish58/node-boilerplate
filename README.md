@@ -1,2 +1,4 @@
--  DALs (database related tasks) inside services
--  DTOs (validating data received from api) inside controllers
+-  No database operations in controllers
+-  one service class for one controller
+-  //@VALIDATION and //@SERVICES
+-  buiseness logic resides inside controllers with easily readable service functions
