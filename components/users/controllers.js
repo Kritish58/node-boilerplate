@@ -7,13 +7,13 @@ class Controllers {
       try {
          const dto = req.body;
 
-         //  @VALIDATION
+         //*  @VALIDATION
          const validEmail = validator.isEmail(dto.email);
          if (!validEmail) {
             STATUS = 400;
             throw new Error('invalid email');
          }
-         //  @SERVICES
+         //*  @SERVICES
          const userExists = await signupServices.checkIfEmailExists(dto.email);
          if (userExists) {
             STATUS = 400;
