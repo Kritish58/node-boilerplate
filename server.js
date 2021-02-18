@@ -1,6 +1,20 @@
-const express = require('express');
-const app = express(0);
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const chalk = require('chalk');
+const path = require('path');
+const app = require('./app');
+dotenv.config({ path: path.join(__dirname, 'config', '.env') });
 
-app.listen(5000, () => {
-   console.log('server is running on port', 3000);
+const { PORT, MONGODB_URI } = process.env;
+
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true }, (err) => {
+   if (err) {
+      console.log(err);
+      process.exit(1);
+   }
+   console.log(chalk.bold.blue('mongodb connected'));
+});
+
+app.listen(PORT, () => {
+   console.log('server is running on port', PORT);
 });
