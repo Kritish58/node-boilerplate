@@ -1,0 +1,2 @@
+-  DALs (database related tasks) inside services
+-  DTOs (validating data received from api) inside controllers
