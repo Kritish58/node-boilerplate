@@ -1,0 +1,43 @@
+{
+   "status code => 200": {
+      "scope": "javascript",
+      "prefix": "res200",
+      "body": ["return res.status(200).json({ success:true, message:'$msg' });"]
+   },
+   "status code => 201": {
+      "scope": "javascript",
+      "prefix": "res201",
+      "body": ["return res.status(201).json({ success:true, message:'$msg' });"]
+   },
+   "status code => 400": {
+      "scope": "javascript",
+      "prefix": "res400",
+      "body": ["return res.status(400).json({ success:false, message:'$msg' });"]
+   },
+   "status code => 404": {
+      "scope": "javascript",
+      "prefix": "res404",
+      "body": ["return res.status(404).json({ success:false, message:'$msg' });"]
+   },
+   "status code => 500": {
+      "scope": "javascript",
+      "prefix": "res500",
+      "body": ["return res.status(500).json({ success:false, message:'$msg' })"]
+   },
+   "status code => dynamic": {
+      "scope": "javascript",
+      "prefix": "resd",
+      "body": ["return res.status($CODE).json({ success:false, message:'$msg' })"]
+   },
+   "validation_section_indentifier": {
+      "scope": "javascript,typescript",
+      "prefix": "/val",
+      "body": ["//* @VALIDATION SECTION"]
+   },
+
+   "services_section_identifier": {
+      "scope": "javascript,typescript",
+      "prefix": "/ser",
+      "body": ["//* @SERVICES SECTION"]
+   }
+}
