@@ -1,9 +1,9 @@
 const UserSchema = require('../schema');
 
 class signupServices {
-   static async checkIfEmailExists(email) {
+   static async checkifUsernameExists(username) {
       try {
-         const userExists = await UserSchema.findOne({ email });
+         const userExists = await UserSchema.findOne({ username });
          return userExists;
       } catch (err) {
          throw new Error(err);

@@ -3,10 +3,11 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const UserSchema = mongoose.Schema({
-   email: {
+   username: {
       type: String,
       required: true,
-      maxlength: [50, 'max 50 chars allowed for email'],
+      maxlength: [30, 'max 30 chars allowed for username'],
+      minlength: [3, 'minimum 3 chars required for username'],
    },
    password: {
       type: String,

@@ -7,7 +7,7 @@ dotenv.config({ path: path.join(__dirname, 'config', '.env') });
 
 const { PORT, MONGODB_URI } = process.env;
 
-mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true }, (err) => {
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true }, err => {
    if (err) {
       console.log(err);
       process.exit(1);
@@ -16,5 +16,5 @@ mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true 
 });
 
 app.listen(PORT, () => {
-   console.log('server is running on port', PORT);
+   console.log(chalk.bold.yellow('server is running on port', PORT));
 });

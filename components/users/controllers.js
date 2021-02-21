@@ -1,4 +1,3 @@
-const validator = require('validator');
 const signupServices = require('./services/signup.service');
 
 class Controllers {
@@ -6,23 +5,27 @@ class Controllers {
       let STATUS;
       try {
          const dto = req.body;
-
          //* @VALIDATION */
-         const validEmail = validator.isEmail(dto.email);
-         if (!validEmail) {
-            STATUS = 400;
-            throw new Error('invalid email');
-         }
+
          //*  @SERVICES
-         const userExists = await signupServices.checkIfEmailExists(dto.email);
+         const userExists = await signupServices.checkifUsernameExists(dto.username);
          if (userExists) {
             STATUS = 400;
-            throw new Error('email already registered');
+            throw new Error('username already registered');
          }
 
          await signupServices.createUser(dto);
 
          return res.status(201).json({ success: true, message: 'user created' });
+      } catch (err) {
+         return res.status(STATUS || 500).json({ success: false, message: err.message });
+      }
+   }
+
+   static async login(req, res) {
+      let STATUS;
+      try {
+         //* @VALIDATIONS
       } catch (err) {
          return res.status(STATUS || 500).json({ success: false, message: err.message });
       }
