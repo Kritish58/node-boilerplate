@@ -1,10 +1,11 @@
+const LoginServices = require('./services/login.service');
 const signupServices = require('./services/signup.service');
 
 class Controllers {
    static async signup(req, res) {
       let STATUS;
       try {
-         const dto = req.body;
+         const dto = DTO.signupDTO(req.body);
          //* @VALIDATION */
 
          //*  @SERVICES
@@ -25,7 +26,22 @@ class Controllers {
    static async login(req, res) {
       let STATUS;
       try {
-         //* @VALIDATIONS
+         const dto = DTO.loginDTO(req.body);
+         const user = await LoginServices.findUserByUsername({ username: dto.username });
+         if (!user) {
+            STATUS = 404;
+            throw new Error('user not found');
+         }
+         const verified = LoginServices.verifyPassword({
+            plainTextPassword: dto.password,
+            hashedPassword: user.password,
+         });
+         if (!verified) {
+            STATUS = 400;
+            throw new Error('password does not match');
+         }
+         const token = LoginServices.generateToken({ payload: { _id: user._id } });
+         return res.status(200).json({ success: true, message: 'login success', token });
       } catch (err) {
          return res.status(STATUS || 500).json({ success: false, message: err.message });
       }
@@ -33,3 +49,21 @@ class Controllers {
 }
 
 module.exports = Controllers;
+
+class DTO {
+   static signupDTO(body) {
+      const { username, password } = body;
+      return {
+         username,
+         password,
+      };
+   }
+
+   static loginDTO(body) {
+      const { username, password } = body;
+      return {
+         username,
+         password,
+      };
+   }
+}
