@@ -1,3 +1,15 @@
+# Starting Steps
+
+## udpate package.json to latest dependencies
+
+-  run `ncu -u` source: https://github.com/raineorshine/npm-check-updates
+
+## edit environment variables
+
+-  create a new .env file inside config folder with reference to .env.example
+
+# Recommendations
+
 -  No database operations in controllers
 -  one service class for one controller
 -  //@VALIDATION and //@SERVICES
