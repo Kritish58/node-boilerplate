@@ -27,13 +27,6 @@ class Controllers {
          return res.status(STATUS || 500).json({ success: false, message: err.message });
       }
    }
-   static async login(req, res) {
-      try {
-         //  const dto = req.body;
-      } catch (err) {
-         return res.status(400).json({ success: false, message: err.message });
-      }
-   }
 }
 
 module.exports = Controllers;

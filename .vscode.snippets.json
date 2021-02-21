@@ -39,5 +39,12 @@
       "scope": "javascript,typescript",
       "prefix": "/ser",
       "body": ["//* @SERVICES SECTION"]
+   },
+   "controller function => dynamic": {
+      "scope": "javascript",
+      "prefix": "controllerfunc",
+      "body": [
+         "static async $function_name(req, res) {\n   let STATUS;\n   try {\n\n   } catch (err) {\n      return res.status(STATUS || 500).json({ success: false, message: err.message });\n   }\n}"
+      ]
    }
 }
