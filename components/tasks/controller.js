@@ -1,20 +1,21 @@
 const multer = require('multer');
 const { nanoid } = require('nanoid');
-const uploadDirectoryPath = require('../../config/uploadDirectoryPath');
+const path = require('path');
+const projectRootDir = require('../../config/projectRootPath');
 
 const storage = multer.diskStorage({
    destination: function (req, file, cb) {
-      cb(uploadDirectoryPath({ foldername: 'tasks' }));
+      cb(null, path.join(projectRootDir(), '/uploads'));
    },
    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '___' + nanoid());
+      cb(null, nanoid() + '___' + file.originalname);
    },
 });
 
 const upload = multer({
    storage,
    limits: {
-      fileSize: 5 * 1024 * 1024,
+      fileSize: 2 * 1024 * 1024,
    },
    fileFilter: function (req, file, cb) {
       if (file.mimetype.includes('jpeg') || file.mimetype.includes('jpg') || file.mimetype.includes('png')) {
@@ -23,7 +24,7 @@ const upload = multer({
          cb(null, false);
       }
    },
-}).single('image');
+}).single('thumbnail');
 
 class Controllers {
    static async readTasks(req, res) {
@@ -44,6 +45,7 @@ class Controllers {
                // An unknown error occurred when uploading.
                throw new Error(err.message);
             }
+            console.log(req.file);
             return res.status(200).json({ success: true, message: 'file uploaded' });
          } catch (error) {
             return res.status(STATUS || 500).json({ success: false, message: error.message });
