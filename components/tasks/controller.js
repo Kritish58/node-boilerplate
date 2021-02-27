@@ -24,7 +24,7 @@ const upload = multer({
          cb(null, false);
       }
    },
-}).single('thumbnail');
+}).single('image');
 
 class Controllers {
    static async readTasks(req, res) {

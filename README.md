@@ -2,7 +2,8 @@
 
 ## udpate package.json to latest dependencies
 
--  run `ncu -u` source: https://github.com/raineorshine/npm-check-updates
+install npm-check-updates globally `npm install -g npm-check-updates` <br><br> run `ncu -u` to upgrade to latest
+versions <br><br> source: https://github.com/raineorshine/npm-check-updates
 
 ## edit environment variables
 
