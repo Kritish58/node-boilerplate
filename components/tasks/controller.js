@@ -2,6 +2,8 @@ const multer = require('multer');
 const { nanoid } = require('nanoid');
 const path = require('path');
 const projectRootDir = require('../../config/projectRootPath');
+const send500Response = require('../../utils/send500Response');
+const sendResponse = require('../../utils/sendResponse');
 
 const storage = multer.diskStorage({
    destination: function (req, file, cb) {
@@ -28,17 +30,16 @@ const upload = multer({
 
 class Controllers {
    static async readTasks(req, res) {
-      let STATUS;
       try {
          //* @VALIDATIONS
-      } catch (err) {
-         return res.status(STATUS || 500).json({ success: false, message: err.message });
+      } catch (error) {
+         send500Response({ res, error });
+         return;
       }
    }
 
    static async createTask(req, res) {
       upload(req, res, function (err) {
-         let STATUS;
          try {
             if (err) {
                console.log('errrorr', err);
@@ -46,28 +47,30 @@ class Controllers {
                throw new Error(err.message);
             }
             console.log(req.file);
-            return res.status(200).json({ success: true, message: 'file uploaded' });
+            sendResponse({ res, success: true, message: 'file uploaded', status: 201 });
+            return;
          } catch (error) {
-            return res.status(STATUS || 500).json({ success: false, message: error.message });
+            send500Response({ res, error });
+            return;
          }
       });
    }
 
    static async readTask(req, res) {
-      let STATUS;
       try {
          //* @VALIDATIONS
-      } catch (err) {
-         return res.status(STATUS || 500).json({ success: false, message: err.message });
+      } catch (error) {
+         send500Response({ res, error });
+         return;
       }
    }
 
    static async deleteTask(req, res) {
-      let STATUS;
       try {
          //* @VALIDATIONS
-      } catch (err) {
-         return res.status(STATUS || 500).json({ success: false, message: err.message });
+      } catch (error) {
+         send500Response({ res, error });
+         return;
       }
    }
 }

@@ -1,4 +1,5 @@
 const logger = require('../../logs/console.logger');
+const send500Response = require('../../utils/send500Response');
 const sendResponse = require('../../utils/sendResponse');
 const LoginServices = require('./services/login.service');
 const signupServices = require('./services/signup.service');
@@ -23,9 +24,9 @@ class Controllers {
          logger.info('signup.success');
          sendResponse({ res, success: true, message: 'user created', status: 201 });
          return;
-      } catch (err) {
-         logger.error('signup.failed >>> ' + err);
-         sendResponse({ res, success: false, message: err.message, status: 500 });
+      } catch (error) {
+         logger.error('signup.failed >>> ' + error);
+         send500Response({ res, error });
          return;
       }
    }
@@ -58,9 +59,9 @@ class Controllers {
          logger.info('login.success');
          sendResponse({ res, success: true, data: { token }, status: 200, message: 'login success' });
          return;
-      } catch (err) {
-         logger.error('login.failed >>> ' + err);
-         sendResponse({ res, success: false, message: err.message, status: 500 });
+      } catch (error) {
+         logger.error('login.failed >>> ' + error);
+         send500Response({ res, error });
          return;
       }
    }
