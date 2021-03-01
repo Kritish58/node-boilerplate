@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const chalk = require('chalk');
 const path = require('path');
 const app = require('./app');
+const logger = require('./logs/console.logger');
 dotenv.config({ path: path.join(__dirname, 'config', '.env') });
 
 const { PORT, MONGODB_URI } = process.env;
@@ -16,5 +17,5 @@ mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true 
 });
 
 app.listen(PORT, () => {
-   console.log(chalk.bold.yellow('server is running on port', PORT));
+   logger.info('server running on port ' + PORT);
 });
