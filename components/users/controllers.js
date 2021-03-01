@@ -20,6 +20,7 @@ class Controllers {
 
          await signupServices.createUser(dto);
 
+         logger.info('signup.success');
          return res.status(201).json({ success: true, message: 'user created' });
       } catch (err) {
          logger.error('signup.failed >>> ' + err);
@@ -53,6 +54,7 @@ class Controllers {
 
          const token = LoginServices.generateToken({ payload: { _id: user._id } });
 
+         logger.info('login.success');
          return res.status(200).json({ success: true, message: 'login success', token });
       } catch (err) {
          logger.error('login.failed >>> ' + err);

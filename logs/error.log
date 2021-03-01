@@ -2,3 +2,9 @@
 {"message":"login.failed >>> Error: password does not match","level":"error","timestamp":"2021-03-01T07:11:14.578Z"}
 {"message":"login.start","level":"alert","timestamp":"2021-03-01T07:12:20.830Z"}
 {"message":"login.failed >>> Error: password does not match","level":"error","timestamp":"2021-03-01T07:12:20.915Z"}
+{"message":"signup.start","level":"alert","timestamp":"2021-03-01T07:13:28.500Z"}
+{"message":"signup.failed >>> Error: username already registered","level":"error","timestamp":"2021-03-01T07:13:28.517Z"}
+{"message":"signup.start","level":"alert","timestamp":"2021-03-01T07:16:45.686Z"}
+{"message":"signup.failed >>> Error: username already registered","level":"error","timestamp":"2021-03-01T07:16:45.704Z"}
+{"message":"signup.start","level":"alert","timestamp":"2021-03-01T07:16:55.252Z"}
+{"message":"login.start","level":"alert","timestamp":"2021-03-01T07:17:30.324Z"}
